@@ -103,7 +103,7 @@ while True:
     crp_r1 = y2 + thresh if y2+thresh < height else height
 
 
-    #cv2.imshow('Spot-Light Footage-1', cv2.resize(frame[crp_r0:crp_r1, crp_c0:crp_c1], (440, 240)))
+    cv2.imshow('Spot-Light Footage-1', frame[crp_r0:crp_r1, crp_c0:crp_c1])
     cv2.imshow('actual camera footage', frame)
         
     #cv2.imshow('Spot-Light Footage', frame[center_x-150:center_x+150, center_y-150:center_y+150])
@@ -112,7 +112,7 @@ while True:
 
 
     #cv2.imshow('actual camera', frame)
-    cv2.imshow('mod video', frame[center_x-150:center_x+150, center_y-100:center_y+100])
+    #cv2.imshow('mod video', cv2.resize(frame[c3:c4, c1:c2], (440, 247)))
 
     # thresh = 0
 
@@ -131,4 +131,3 @@ while True:
     if key == 27:
         break
 
-                                                             
