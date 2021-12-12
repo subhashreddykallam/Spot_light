@@ -13,7 +13,7 @@ top_left_x = 0
 bottom_right_y = 0
 bottom_right_x = 0
 
-def center_stage_window(center_x, center_y, width, height):
+def spot_light_window(center_x, center_y, width, height):
     window_width, window_height = 640, 360
     top_left_x = center_x - (window_width//2)
     top_left_y = center_y - (window_height//2)
@@ -63,9 +63,10 @@ while True:
     for face in faces:
         x1, y1 = face.left(), face.top()
         x2, y2 = face.right(), face.bottom()
-        cv2.rectangle(frame, (x1,y1), (x2,y2), (0, 255, 0), 3)
+        cv2.rectangle(frame, (x1,y1), (x2,y2), (0, 255, 0), 2)
     
-    tlx, tly, brx, bry = center_stage_window((x1+x2)//2, (y1+y2)//2, 1280, 720)
+    tlx, tly, brx, bry = spot_light_window((x1+x2)//2, (y1+y2)//2, 1280, 720)
+    ##cv2.rectangle(frame,(tlx,tly),(brx,bry),(255,0,0),1)
     print(tlx, tly, brx, bry)
 
     #print(c1, c2, c3, c4)
