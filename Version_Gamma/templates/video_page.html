@@ -1,0 +1,20 @@
+<!doctype html>
+<html lang="en">
+
+<head>
+    <title>Live Streaming Demonstration</title>
+    <!-- <link rel="stylesheet" href="../static/style.css"> -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.4.0/css/bootstrap.min.css"
+        integrity="sha256-/ykJw/wDxMa0AQhHDYfuMEwVb4JHMx9h4jD4XvHqVzU=" crossorigin="anonymous" />
+</head>
+
+<body>
+    <h1>Spotlight</h1>
+    <div id="container">
+        <img id="feed" src="{{ url_for('spotlight_feed') }}">
+    </div>
+    <a class="btn btn-primary" href="{{ url_for('index')}}">Back</a>
+
+</body>
+
+</html>
