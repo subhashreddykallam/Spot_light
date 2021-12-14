@@ -63,19 +63,24 @@ def activate_Spotlight():
 
 app = Flask(__name__)
 
+def closeCam():
+    if cap.isOpened():
+        cap.release()
+
 @app.route('/')
 @app.route('/index')
 def index():
-    if cap.isOpened():
-        cap.release()
+    closeCam()
     return render_template('index.html')
 
 @app.route('/video_page')
 def video_page():
+    closeCam()
     return render_template('video_page.html')
 
 @app.route('/about')
 def about():
+    closeCam()
     return render_template('about.html')
 
 @app.route('/spotlight_feed')
