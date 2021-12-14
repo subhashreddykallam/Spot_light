@@ -50,7 +50,7 @@ def activate_Spotlight():
         for face in faces:
             x1, y1 = face.left(), face.top()
             x2, y2 = face.right(), face.bottom()
-            cv2.rectangle(frame, (x1,y1), (x2,y2), (0, 255, 0), 2)
+            cv2.rectangle(frame, (x1,y1), (x2,y2), (0, 255, 0), 1)
         if len(faces) == 0:
             tlx, tly, brx, bry = spot_light_window((width)//2, (height)//2, width, height)
         else:
