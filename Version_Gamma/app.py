@@ -74,11 +74,15 @@ def index():
 def video_page():
     return render_template('video_page.html')
 
+@app.route('/about')
+def about():
+    return render_template('about.html')
+
 @app.route('/spotlight_feed')
 def spotlight_feed():
     return Response(activate_Spotlight(), mimetype='multipart/x-mixed-replace; boundary=frame')
 
-# registry = os.path.join('static', 'Images')
+registry = os.path.join('static', 'Images')
 
 if __name__ == '__main__':
     app.run(debug=True)
