@@ -1,0 +1,78 @@
+% LaTeX Template for Project Report, Version 2.0
+% (Abstracted from a Major Project Report at CSED, NIT Calicut but can be
+% modified easily to use for other reports also.)
+%
+% Released under Creative Commons Attribution license (CC-BY)
+% Info: http://creativecommons.org/licenses/by/3.0/
+%
+% Created by: Kartik Singhal
+% BTech CSE Batch of 2009-13
+% NIT Calicut
+% Contact Info: kartiksinghal@gmail.com
+%
+% It is advisable to learn the basics of LaTeX before using this template.
+% A good resource to start with is http://en.wikibooks.org/wiki/LaTeX/
+%
+% All template fields are marked with a pair of angular brackets e.g. <title here>
+% except for the ones defining citation names in ref.tex.
+%
+% Empty space after chapter/section/subsection titles can be used to insert text.
+%
+% Just compile this file using pdflatex after making all required changes.
+
+\documentclass[12pt,a4paper]{report}
+\usepackage[pdftex]{graphicx} %for embedding images
+\usepackage{url} %for proper url entries
+\usepackage{graphicx}
+\usepackage[belowskip=-15pt,aboveskip=0pt]{caption}
+\usepackage{amssymb}
+\usepackage{fancyvrb}
+\usepackage{fancyhdr}
+\usepackage{lipsum}
+\usepackage{algpseudocode}
+\usepackage{algorithm}
+\usepackage{float}
+\usepackage{amsmath}
+\usepackage{footmisc}
+\usepackage{lipsum}
+\usepackage{tocbibind}
+\usepackage{setspace}
+\setstretch{1.5}
+\usepackage[bookmarks, colorlinks=false, pdfborder={0 0 0}, pdftitle={<title>}, pdfauthor={<author's name here>}, pdfsubject={<subject here>}, pdfkeywords={<keywords here>}]{hyperref} %for creating links in the pdf version and other additional pdf attributes, no effect on the printed document
+\begin{document}
+\renewcommand\bibname{References} %Renames "Bibliography" to "References" on ref page
+%include other pages
+%\input{./title.tex}
+%\input{./certificate.tex}
+\input{./abstract.tex}
+% \input{./acknow.tex}
+% \input{./declaration.tex}
+\pagenumbering{roman} %numbering before main content starts
+\tableofcontents
+\listoffigures
+\listoftables
+\newpage
+\pagenumbering{arabic} %reset numbering to normal for the main content
+\pagestyle{fancy}
+\lhead{}
+%\lfoot{}
+%\cfoot{}
+\rhead{\footnotesize Analysis of Breath Patterns in Nascent Infants}
+%\rfoot{\footnotesize Page \thepage\ of \pageref{LastPage}}
+%\rnewcommand{\headheight}{24pt}
+%\rnewcommand{\footrulewidth}{0.4pt}
+\input{./introduction.tex} %literature survey included in this
+\input{./prob-definition.tex} %objective changed to problem definition
+\input{./related-work.tex}
+\input{./design-methods.tex}
+\input{./proposed-system.tex}
+\input{./testing-and-result.tex}
+% \input{./future-work.tex}
+\input{./conclusion.tex}
+\input{./ref.tex}
+%\backmatter % book mode only
+\appendix
+\input{./appendix.tex}
+% \usepackage{float}
+% \usepackage{caption}
+\end{document}
