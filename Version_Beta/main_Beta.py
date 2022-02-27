@@ -3,7 +3,9 @@ import numpy as np
 import dlib
 
 cap = cv2.VideoCapture(0)
+#face_cascade = cv2.CascadeClassifier('Version_Alpha/haarcascade_frontalface_default.xml')
 detector = dlib.get_frontal_face_detector()
+
 
 dynamic_width = 640
 center_x, center_y = None, None
@@ -37,36 +39,44 @@ def spot_light_window(center_x, center_y, width, height):
         bottom_right_y = height
         top_left_y = height - 360
 
-    #bottom_right = (bottom_right_x, bottom_right_y)
-
-    #cropped_img = img_copy[top_right_y: bottom_right_y, top_left_x: bottom_right_x]
-
-    #cv2.rectangle(img_copy, (top_left_x, top_right_y), bottom_right, (0, 255, 0), 3)
-
-    #dynamic_width = bottom_right_x - top_left_x
-
-    #cropped_img = cv2.resize(cropped_img, (window_size_width, window_size_height))
-
-    #return cropped_img, (top_right_x, top_right_y), bottom_right, dynamic_width
-
     return [top_left_x, top_left_y, bottom_right_x, bottom_right_y]
-
-
 
 while True:
     status, frame = cap.read()
     width, height = frame.shape[:2]
     gray = cv2.cvtColor(frame, cv2.COLOR_BGR2GRAY)
     faces = detector(gray)
-    
-    
-    for face in faces:
-        x1, y1 = face.left(), face.top()
-        x2, y2 = face.right(), face.bottom()
+    #gray = cv2.cvtColor(frame, cv2.COLOR_BGR2GRAY)
+    #faces = face_cascade.detectMultiScale(gray, 1.1, 4)
+    n = len(faces)
+    if len(faces) <= 1:
+        x1, y1, x2, y2 = 0, 0, 0, 0
+        for face in faces:
+            x1, y1 = face.left(), face.top()
+            x2, y2 = face.right(), face.bottom()
+            cv2.rectangle(frame, (x1,y1), (x2,y2), (0, 255, 0), 2)
+    else:
+        face_cords = []
+        for face in faces:
+            x1, y1 = face.left(), face.top()
+            x2, y2 = face.right(), face.bottom()
+            face_cords.append((x1, y1, x2, y2))
+        x1, y1, x2, y2 = 0, 0, 0, 0
+        for ele in face_cords:
+            x1 += ele[0]
+            y1 += ele[1]
+            x2 += ele[2]
+            y2 += ele[3]
+         
         cv2.rectangle(frame, (x1,y1), (x2,y2), (0, 255, 0), 2)
     
-    tlx, tly, brx, bry = spot_light_window((x1+x2)//2, (y1+y2)//2, 1280, 720)
-    ##cv2.rectangle(frame,(tlx,tly),(brx,bry),(255,0,0),1)
+    # for face in faces:
+    #     x1, y1 = face.left(), face.top()
+    #     x2, y2 = face.right(), face.bottom()
+        #cv2.rectangle(frame, (x1,y1), (x2,y2), (0, 255, 0), 1)
+    z = 2*max(n,1)
+    tlx, tly, brx, bry = spot_light_window((x1+x2)//z, (y1+y2)//z, 1280, 720)
+    cv2.rectangle(frame,(tlx,tly),(brx,bry),(0,255,0),2)
     print(tlx, tly, brx, bry)
 
     #print(c1, c2, c3, c4)
@@ -80,7 +90,7 @@ while True:
     # crp_r1 = y2 + thresh if y2+thresh < height else height
 
 
-    cv2.imshow('Spot-Light Footage-1', frame[tly:bry, tlx:brx])
+    cv2.imshow('Spot-Light Footage-1', frame[tly+2:bry-2, tlx+2:brx-2])
     cv2.imshow('actual camera footage', frame)
         
     #cv2.imshow('Spot-Light Footage', frame[center_x-150:center_x+150, center_y-150:center_y+150])
@@ -97,8 +107,8 @@ while True:
     # crp_c1 = c2 + thresh if c2+thresh < width else width
     # crp_r0 = c3 - thresh if c3-thresh > 0 else 0
     # crp_r1 = c4 + thresh if c4+thresh < height else height
-    #cv2.imshow('Spot-Light Footage-1', frame[c3:c4, c1:c2])
-    #cv2.imshow('mod footage', frame[])
+    # cv2.imshow('Spot-Light Footage-1', frame[c3:c4, c1:c2])
+    # cv2.imshow('mod footage', frame[])
 
     # print(crp_c0, crp_c1, crp_r0, crp_r1)
 
