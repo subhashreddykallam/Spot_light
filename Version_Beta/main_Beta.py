@@ -46,7 +46,6 @@ while True:
     width, height = frame.shape[:2]
     gray = cv2.cvtColor(frame, cv2.COLOR_BGR2GRAY)
     faces = detector(gray)
-<<<<<<< HEAD
     #gray = cv2.cvtColor(frame, cv2.COLOR_BGR2GRAY)
     #faces = face_cascade.detectMultiScale(gray, 1.1, 4)
     n = len(faces)
@@ -78,18 +77,6 @@ while True:
     z = 2*max(n,1)
     tlx, tly, brx, bry = spot_light_window((x1+x2)//z, (y1+y2)//z, 1280, 720)
     cv2.rectangle(frame,(tlx,tly),(brx,bry),(0,255,0),2)
-=======
-
-    x1, x2, y1, y2 = 0, 0, 0, 0
-    for face in faces:
-        print("Hello")
-        x1, y1 = face.left(), face.top()
-        x2, y2 = face.right(), face.bottom()
-        cv2.rectangle(frame, (x1,y1), (x2,y2), (0, 255, 0), 2)
-
-    tlx, tly, brx, bry = spot_light_window((x1+x2)//2, (y1+y2)//2, 1280, 720)
-    ##cv2.rectangle(frame,(tlx,tly),(brx,bry),(255,0,0),1)
->>>>>>> 6b409695889763829715c06069af440a0215d3eb
     print(tlx, tly, brx, bry)
 
     #print(c1, c2, c3, c4)
@@ -102,13 +89,8 @@ while True:
     # crp_r0 = y1 - thresh if y1-thresh > 0 else thresh
     # crp_r1 = y2 + thresh if y2+thresh < height else height
 
-<<<<<<< HEAD
 
     cv2.imshow('Spot-Light Footage-1', frame[tly+2:bry-2, tlx+2:brx-2])
-=======
-    spotlight_frame = frame[tly:bry, tlx:brx]
-    cv2.imshow('Spot-Light Footage-1', cv2.resize(spotlight_frame, (640, 360)))
->>>>>>> 6b409695889763829715c06069af440a0215d3eb
     cv2.imshow('actual camera footage', frame)
 
     #cv2.imshow('Spot-Light Footage', frame[center_x-150:center_x+150, center_y-150:center_y+150])
