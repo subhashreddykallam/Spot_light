@@ -1,6 +1,6 @@
-def handle_multi_face(faces):
+def handle_multi_face(faces, co_ords):
     face_co_ords = []
-    x1, y1, x2, y2 = 0, 0, 0, 0
+    x1, y1, x2, y2 = co_ords
     for face in faces:
         x1, y1 = face.left(), face.top()
         x2, y2 = face.right(), face.bottom()
